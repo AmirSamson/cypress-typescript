@@ -1,4 +1,3 @@
-import { use } from "chai";
 import UserAPI from "../APIs/UserAPI";
 import User from "../Models/user";
 
