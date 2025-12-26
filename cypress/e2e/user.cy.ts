@@ -1,5 +1,5 @@
 it('should be able to register', () =>{
-    cy.visit('https://todo.qacart.com/signup');
+    cy.visit('/signup');
     cy.get('[data-testid="first-name"]').type('Amir')
     cy.get('[data-testid="last-name"]').type('Amir')
     cy.get('[data-testid="email"]').type('601@gmail.com')
