@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cross-env HTTP_PROXY= HTTPS_PROXY= NO_PROXY= cypress open",
+    "cypress:run": "cross-env HTTP_PROXY= HTTPS_PROXY= NO_PROXY= cypress run"
   },
   "keywords": [],
   "author": "",
