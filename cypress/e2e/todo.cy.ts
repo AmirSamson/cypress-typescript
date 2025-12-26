@@ -1,3 +1,5 @@
+import { use } from "chai";
+import UserAPI from "../APIs/UserAPI";
 import User from "../Models/user";
 
 it('should be able to add a todo', ()=>{
@@ -7,16 +9,7 @@ it('should be able to add a todo', ()=>{
         "a104@example.com",
         '1234qwer'
     );
-    cy.request({
-        method: "POST",
-        url: '/api/v1/users/register' ,
-        body:{
-            email: user.getEmail(),
-            firstName: user.getFirstName(),
-            lastName: user.getLastName(),
-            password: user.getPassword(),
-        }
-    });
+    new UserAPI().register(user);
     cy.visit('/todo');
     cy.get('[data-testid="todo-item"]').should('contain.text', 'how to Cypress');
 });
@@ -30,17 +23,7 @@ it.only('should be able to delete a todo', ()=>{
     );
 
     let token: string;
-    cy.request({
-        method: "POST",
-        url: '/api/v1/users/register',
-        body:{
-            email:user.getEmail(),
-            firstName:user.getFirstName(),
-            lastName: user.getLastName(),
-            password: user.getPassword(),
-        }
-
-    }).then((response) =>{
+    new UserAPI().register(user).then((response) =>{
         token = response.body.access_token;
         //moved the 'cy.request' inside the "then" since in CYPRESS we don't have the 'Await' that we had in Playwright. 
         // that is why we need to put this cy.requset inside so that the Token is put in `Bearer ${token} after it was created.
