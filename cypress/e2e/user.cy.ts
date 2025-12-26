@@ -1,10 +1,22 @@
-it('should be able to register', () =>{
-    cy.visit('/signup');
-    cy.get('[data-testid="first-name"]').type('Amir')
-    cy.get('[data-testid="last-name"]').type('Amir')
-    cy.get('[data-testid="email"]').type('601@gmail.com')
-    cy.get('[data-testid="password"]').type('12345678Aa')
-    cy.get('[data-testid="confirm-password"]').type('12345678Aa')
-    cy.get('[data-testid="submit"]').click();
+import User from "../Models/user";
+
+it.only('should be able to register', () =>{
+    const user = new User(
+        'Testing Croc',
+        "On chain",
+        "a102@example.com",
+        '1234qwer'
+    );
+    cy.request({
+        method: "POST",
+        url: '/api/v1/users/register' ,
+        body:{
+            email: user.getEmail(),
+            firstName: user.getFirstName(),
+            lastName: user.getLastName(),
+            password: user.getPassword(),
+        }
+    });
+    cy.visit('/todo');
     cy.get('[data-testid="welcome"]').should("be.visible");
-})
+});
