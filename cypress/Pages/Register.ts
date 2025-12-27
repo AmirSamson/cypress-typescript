@@ -6,22 +6,22 @@ export default class RegisterPage{
         cy.visit('/signup');
     }
 
-    get firstNameInput(){
+    private get firstNameInput(){
         return '[data-testid="first-name"]';
     }
-    get lastNameInput(){
+    private get lastNameInput(){
         return '[data-testid="last-name"]';
     }
-    get emailInput(){
+    private get emailInput(){
         return '[data-testid="email"]'
     }
-    get passwordInput(){
+    private get passwordInput(){
         return '[data-testid="password"]'
     }
-    get confrimPasswordInput(){
+    private get confrimPasswordInput(){
         return '[data-testid="confirm-password"]'
     }
-    get submitButton(){
+    private get submitButton(){
         return '[data-testid="submit"]'
     }
 

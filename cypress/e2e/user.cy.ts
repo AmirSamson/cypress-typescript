@@ -1,5 +1,6 @@
 import User from "../Models/user";
 import RegisterPage from "../Pages/Register";
+import TodoPage from "../Pages/todoPage";
 
 it.only('should be able to register', () =>{
     const user = new User(
@@ -11,5 +12,6 @@ it.only('should be able to register', () =>{
     const registerPage = new RegisterPage();
     registerPage.load();
     registerPage.register(user);
-    cy.get('[data-testid="welcome"]').should("be.visible");
+    const todoPage = new TodoPage()
+    todoPage.getWelcomeMessage().should("be.visible");
 });

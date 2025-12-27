@@ -1,6 +1,7 @@
 import TodoApi from "../APIs/TodoApi";
 import UserApi from "../APIs/UserApi";
 import User from "../Models/user";
+import TodoPage from "../Pages/todoPage";
 
 it('should be able to add a todo', ()=>{
     const user = new User(
@@ -10,8 +11,9 @@ it('should be able to add a todo', ()=>{
         '1234qwer'
     );
     new UserApi().register(user);
-    cy.visit('/todo');
-    cy.get('[data-testid="todo-item"]').should('contain.text', 'how to Cypress');
+    const todoPage = new TodoPage()
+    todoPage.load()
+    todoPage.getTodoItems().should('contain.text', 'how to Cypress');
 });
 
 
@@ -29,9 +31,10 @@ it.only('should be able to delete a todo', ()=>{
         new TodoApi().addTodo(user)
     });
 
-    cy.visit('https://todo.qacart.com/todo');
-    cy.get('[data-testid="todo-item"]').should('contain.text', 'how to Cypress');
-    cy.get('[data-testid="delete"]').click()
-    cy.get('[data-testid="no-todos"]').should('be.visible')
-    cy.get('[data-testid="no-todos"]').should('contain.text', 'No Available Todos')
+    const todoPage = new TodoPage()
+    todoPage.load()
+    todoPage.getTodoItems().should('contain.text', 'how to Cypress');
+    todoPage.getDeleteButton()
+    todoPage.getNoTodoIcon().should('be.visible')
+    todoPage.getNoTodoIcon().should('contain.text', 'No Available Todos')
 });
