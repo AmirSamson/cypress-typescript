@@ -1,10 +1,10 @@
 import User from "../Models/user";
-export default class UserAPI{
+export default class UserApi{
 
     register(user: User){
         return cy.request({
             method: "POST",
-            url: '/api/v1/users/register' ,
+            url: '/api/v1/users/register',
             body:{
             email: user.getEmail(),
             firstName: user.getFirstName(),

@@ -1,5 +1,5 @@
-import UserAPI from "../APIs/UserAPI";
 import User from "../Models/user";
+import RegisterPage from "../Pages/Register";
 
 it.only('should be able to register', () =>{
     const user = new User(
@@ -8,7 +8,8 @@ it.only('should be able to register', () =>{
         "a103@example.com",
         '1234qwer'
     );
-    new UserAPI().register(user);
-    cy.visit('/todo');
+    const registerPage = new RegisterPage();
+    registerPage.load();
+    registerPage.register(user);
     cy.get('[data-testid="welcome"]').should("be.visible");
 });

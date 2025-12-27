@@ -3,6 +3,7 @@ export default class User{
     private lastName: string
     private email: string
     private password: string
+    private token: string;
 
     constructor(
         firstName: string, 
@@ -20,4 +21,6 @@ export default class User{
     getLastName(){return this.lastName}
     getEmail(){return this.email}
     getPassword(){return this.password}
+    getToken(){return this.token}
+    setToken(token:string){this.token=token}
 }
