@@ -1,9 +1,14 @@
+import UserApi from "../APIs/UserApi";
 import User from "../Models/user";
 
 export default class RegisterPage{
 
     load(){
         cy.visit('/signup');
+    }
+
+    RegisterUsingApi(user:User){
+       return new UserApi().register(user)
     }
 
     private get firstNameInput(){

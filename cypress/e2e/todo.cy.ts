@@ -1,32 +1,38 @@
 import TodoApi from "../APIs/TodoApi";
 import UserApi from "../APIs/UserApi";
 import User from "../Models/user";
+import NewTodoPage from "../Pages/NewTodoPage";
+import RegisterPage from "../Pages/RegisterPage";
 import TodoPage from "../Pages/todoPage";
 
 it('should be able to add a todo', ()=>{
     const user = new User(
         'Testing Croc',
         "On chain",
-        "a104@example.com",
+        "a153@example.com",
         '1234qwer'
     );
-    new UserApi().register(user);
+    const registerPage = new RegisterPage()
+    registerPage.RegisterUsingApi(user);
+    const newTodoPage = new NewTodoPage();
+    newTodoPage.load();
+    newTodoPage.addTodoItem("how to Cypress");
+    newTodoPage.SubmitButton();
     const todoPage = new TodoPage()
-    todoPage.load()
     todoPage.getTodoItems().should('contain.text', 'how to Cypress');
 });
 
 
 
-it.only('should be able to delete a todo', ()=>{
+it('should be able to delete a todo', ()=>{
     const user = new User(
         'Testing Croc',
         "On chain",
-        "a109@example.com",
+        "a111@example.com",
         '1234qwer'
     );
-
-    new UserApi().register(user).then((response) =>{
+    const registerPage = new RegisterPage()
+    registerPage.RegisterUsingApi(user).then((response) =>{
         user.setToken(response.body.access_token)
         new TodoApi().addTodo(user)
     });
