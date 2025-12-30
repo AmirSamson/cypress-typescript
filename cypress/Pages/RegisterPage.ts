@@ -7,10 +7,6 @@ export default class RegisterPage{
         cy.visit('/signup');
     }
 
-    RegisterUsingApi(user:User){
-       return new UserApi().register(user)
-    }
-
     private get firstNameInput(){
         return '[data-testid="first-name"]';
     }
@@ -37,5 +33,11 @@ export default class RegisterPage{
         cy.get(this.passwordInput).type(user.getPassword())
         cy.get(this.confrimPasswordInput).type(user.getPassword())
         cy.get(this.submitButton).click
+    }
+
+    RegisterUsingApi(user:User){
+       return new UserApi().register(user).then((response)=>{
+        user.setToken(response.body.access_token)
+       })
     }
 }

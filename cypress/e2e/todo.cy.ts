@@ -27,7 +27,7 @@ it('should be able to delete a todo', ()=>{
     const user = new User(
         'Testing Croc',
         "On chain",
-        "a112@example.com",
+        "b500@test.com",
         '1234qwer'
     );
     const registerPage = new RegisterPage()
