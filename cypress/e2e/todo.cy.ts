@@ -1,5 +1,4 @@
 import TodoApi from "../APIs/TodoApi";
-import UserApi from "../APIs/UserApi";
 import User from "../Models/user";
 import NewTodoPage from "../Pages/NewTodoPage";
 import RegisterPage from "../Pages/RegisterPage";
@@ -9,7 +8,7 @@ it('should be able to add a todo', ()=>{
     const user = new User(
         'Testing Croc',
         "On chain",
-        "a153@example.com",
+        "a154@example.com",
         '1234qwer'
     );
     const registerPage = new RegisterPage()
@@ -28,7 +27,7 @@ it('should be able to delete a todo', ()=>{
     const user = new User(
         'Testing Croc',
         "On chain",
-        "a111@example.com",
+        "a112@example.com",
         '1234qwer'
     );
     const registerPage = new RegisterPage()

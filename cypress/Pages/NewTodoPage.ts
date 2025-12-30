@@ -6,8 +6,8 @@ export default class NewTodoPage{
     private get todoItemInput(){
         return '[data-testid="new-todo"]'
     }
-    addTodoItem(){
-        cy.get(this.todoItemInput).type('how to Cypress')
+    addTodoItem(task:string){
+        cy.get(this.todoItemInput).type(task)
     }
 
     private get submitNewTaskButton(){

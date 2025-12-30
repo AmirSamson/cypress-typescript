@@ -1,17 +1,26 @@
 import User from "../Models/user";
-import RegisterPage from "../Pages/Register";
+import RegisterPage from "../Pages/RegisterPage";
 import TodoPage from "../Pages/todoPage";
 
-it.only('should be able to register', () =>{
-    const user = new User(
+describe('todo test cases', ()=>{
+    let user: User;
+    let registerPage: RegisterPage;
+    let todoPage: TodoPage;
+
+    beforeEach(() =>{
+    user = new User(
         'Testing Croc',
         "On chain",
-        "a103@example.com",
+        "b103@example.com",
         '1234qwer'
     );
-    const registerPage = new RegisterPage();
+    registerPage = new RegisterPage();
+    todoPage = new TodoPage()
+    })
+
+    it.only('should be able to register', () =>{
     registerPage.load();
     registerPage.register(user);
-    const todoPage = new TodoPage()
     todoPage.getWelcomeMessage().should("be.visible");
-});
+    });
+})
